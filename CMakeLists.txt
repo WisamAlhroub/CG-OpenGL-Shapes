@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(PPUViewer)
 
 INCLUDE_DIRECTORIES (
-   D:/Develope/Libs/Glut/include
-
+   C:/Qt/5.15.2/msvc2019/include/Glut
 )
 
 find_package(Qt5Widgets)
@@ -27,7 +26,7 @@ SET( PPUViewer_SRCS
 )
 
 LINK_LIBRARIES(
-   D:/Develope/Libs/Glut/Lib/glut32.lib
+   C:/Qt/5.15.2/msvc2019/lib/glut32.lib
 )
 
 

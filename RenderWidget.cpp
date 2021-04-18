@@ -9,7 +9,7 @@
 
 
 #include "RenderWidget.h"
-#include <glut.h>
+#include "Glut/glut.h"
 #include <QPainter>
 
 RenderWidget::RenderWidget(QWidget *parent) : QGLWidget(parent)
@@ -46,31 +46,68 @@ void RenderWidget::initializeGL()
 
 void RenderWidget::paintGL()
 {
+    glClearColor(0.937, 0.8901, 0.686, 0);
     glClear(GL_COLOR_BUFFER_BIT);
 
-//    glLineWidth(3);
-//    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-//   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    // drawing top right gradient triangle
+    glBegin(GL_TRIANGLES);
+        glColor3f(1.0, 0.0, 0.0); // red
+        glVertex2f(380, 400);
+        glColor3f(0.0, 1.0, 0.0); // green
+        glVertex2f(480, 550);
+        glColor3f(0.0, 0.0, 1.0); // blue
+        glVertex2f(580, 400);
+    glEnd();
+
+    // drawing bottom right 5-points polygon
+    glBegin(GL_POLYGON);
+        glColor3f(0.0, 0.0, 1.0);   // blue
+        glVertex2f(350, 100);
+        glVertex2f(500, 100);
+        glVertex2f(550, 250);
+        glVertex2f(425, 350);
+        glVertex2f(300, 250);
+    glEnd();
 
     glBegin(GL_TRIANGLES);
-      glColor3f(1.0, 0.0, 0.0);   // red
-      glVertex2f(100, 100);
-      glVertex2f(400, 100);
-      glVertex2f(250, 400);
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex2f(350, 150);
+        glVertex2f(500, 150);
+        glColor3f(1.0, 0.0, 0.0);
+        glVertex2f(420, 215);
+        
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex2f(350, 150);
+        glVertex2f(420, 300);
+        glColor3f(1.0, 0.0, 0.0);
+        glVertex2f(420, 215);
+
+        glColor3f(0.0, 1.0, 0.0);
+        glVertex2f(500, 150);
+        glVertex2f(420, 300);
+        glColor3f(1.0, 0.0, 0.0);
+        glVertex2f(420, 215);
     glEnd();
-    
-    //glBegin(GL_TRIANGLES);
-    //  glColor3f(1.0, 0.0, 0.0);   // red
-    //  glVertex2f(100, 100);
-    //  glColor3f(0.0, 1.0, 0.0);   // green
-    //  glVertex2f(400, 100);
-	   // glColor3f(0.0, 0.0, 1.0);   // blue
-    //  glVertex2f(250, 400);
-    //glEnd();
 
+    // drawing top left square
+    glBegin(GL_QUADS);  
+        glColor3f(1.0, 1.0, 1.0);
+        glVertex2f(10, 300);
+        glColor3f(0.2, 0.2, 0.2);
+        glVertex2f(300, 300);   
+        glColor3f(1.0, 1.0, 1.0);
+        glVertex2f(300, 580);
+        glColor3f(0.2, 0.2, 0.2);
+        glVertex2f(10, 580);
+    glEnd();
 
-
-  
+    // drawing yellow triangle
+    glBegin(GL_TRIANGLES);
+        glColor3f(0.996, 0.949, 0);
+        glVertex2f(100, 200);
+        glVertex2f(100, 350);
+        glVertex2f(250, 200);
+    glEnd();
 
     glFlush();
 }
